@@ -33,16 +33,46 @@ By using three variable K-Map, we can get the simplified expression for next sta
 The maximum possible groupings of adjacent ones are already shown in the figure. Therefore, the simplified expression for next state Qt+1t+1 is Q(t+1)=S+R′Q(t)Q(t+1)=S+R′Q(t)
 
 **Procedure**
-
-/* write all the steps invloved */
-
+```
+Step 1: Open Quartus II in your laptop.
+Step 2: Write code to implement SR flipflop using verilog and validating their functionality using their functional tables.
+Step 3: Run compilation to check for errors.
+Step 4: Open waveform output and load input values.
+Step 5: Run simulation to get the output.
+Step 6: Open in RTL viewers to get RTL diagram output.
+```
 **PROGRAM**
+```
+/* Program for flipflops and verify its truth table in quartus using Verilog programming.
+Developed by: paida ram sai
+RegisterNumber: 212223110034
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
+module SRFLIPFLOPUSINGCASE(q, q_bar, s,r, clk, reset);//SR Flip Flop Behavioral Level using ‘case’ 
+ input s,r,clk, reset;
+ output reg q;
+ output q_bar;
+
+ always@(posedge clk) begin // for synchronous reset
+   if(!reset)       q <= 0;
+   else 
+ begin
+     case({s,r})       
+        2'b00: q <= q;     // No change
+       2'b01: q <= 1'b0;  // Write logic for reset
+       2'b10: q <= 1'b1;  // Write logic for set
+       2'b11:	q <= 1'bx;	// Write logic for Invalid state                      
+     endcase
+   end
+ end
+ assign q_bar = ~q;
+endmodule
 */
-
+```
 **RTL LOGIC FOR FLIPFLOPS**
+![Screenshot 2024-04-23 102148](https://github.com/23005672/SR-FLIPFLOP-USING-CASE/assets/138971519/e383f1f0-eafc-453e-98d4-28e343d7bc50)
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
+![Screenshot 2024-04-23 102206](https://github.com/23005672/SR-FLIPFLOP-USING-CASE/assets/138971519/ccc91c13-243c-44d6-814c-7a9bd6d0cee7)
 
-**RESULTS**
+## RESULT:
+Hence, SR flipflop using verilog and validating their functionality using their functional tables is implemented.
